@@ -2,7 +2,7 @@ POST http://localhost:8080/battle HTTP/1.1
 content-type: application/json
 
 {
-    "Enemy": "A",
+    "Enemy": "cacodemon",
     "Player": "pedrohfmg"
 }
 

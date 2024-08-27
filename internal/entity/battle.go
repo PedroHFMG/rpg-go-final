@@ -14,6 +14,7 @@ type Battle struct {
 	PlayerName string `json:"player_name"`
 	EnemyName  string `json:"enemy_name"`
 	DiceThrown int    `json:"dice_thrown"`
+	Dice2      int    `json:"dice_2"`
 	Result     string `json:"result"`
 }
 
@@ -26,5 +27,6 @@ func NewBattle(playerID, enemyID, playerName, enemyName string) *Battle {
 		PlayerName: playerName,
 		EnemyName:  enemyName,
 		DiceThrown: rand.Intn(6) + 1,
+		Dice2:      rand.Intn(10) + 1,
 	}
 }

@@ -8,14 +8,16 @@ type Player struct {
 	Life     int
 	Attack   int
 	Defesa   int
+	Status   string
 }
 
-func NewPlayer(nickname string, life, attack, defesa int) *Player {
+func NewPlayer(nickname string, life, attack, defesa int, status string) *Player {
 	return &Player{
 		ID:       uuid.New().String(),
 		Nickname: nickname,
 		Life:     life,
 		Attack:   attack,
 		Defesa:   defesa,
+		Status:   status,
 	}
 }

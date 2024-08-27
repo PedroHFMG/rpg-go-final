@@ -2,7 +2,7 @@ package service
 
 import (
 	"errors"
-    "strconv"
+	"strconv"
 
 	"rpg-go-final/internal/entity"
 	"rpg-go-final/internal/repository"
@@ -39,6 +39,7 @@ func (bs *BattleService) CreateBattle(playerNickname, enemyNickname string) (*en
 
 	battle := entity.NewBattle(player.ID, enemy.ID, player.Nickname, enemy.Nickname)
 	dice := battle.DiceThrown
+	dice2 := battle.Dice2 //Dado secundário para verificar a chance de dar ataque com Poison
 
 	var result string
 
@@ -56,18 +57,28 @@ func (bs *BattleService) CreateBattle(playerNickname, enemyNickname string) (*en
 			return nil, "", errors.New("falha ao atualizar a vida do jogador")
 		}
 
+		if dice >= 2 && dice2 >= 8 {
+			player.Status = "Poison"
+			player.Life = (player.Life - damage) + 1
+			if player.Life < 0 {
+				player.Life = 0
+			}
+		}
+
 		// Result para o dano causado e dados do jogador
 		damageResult := "Inimigo atacou. Dano causado: " + strconv.Itoa(damage) +
-			" | Vida do Jogador: " + strconv.Itoa(player.Life) + 
+			" | Vida do Jogador: " + strconv.Itoa(player.Life) +
 			" | Defesa do Jogador: " + strconv.Itoa(player.Defesa) +
-			" | Ataque do Inimigo: " + strconv.Itoa(enemy.Attack)
+			" | Status do Jogador: " + player.Status +
+			" | Ataque do Inimigo: " + strconv.Itoa(enemy.Attack) +
+			" ||| "
 
 		// Result para os dados do inimigo
-		enemyResult := "Dados do Inimigo: Vida: " + strconv.Itoa(enemy.Life) + 
+		enemyResult := "Dados do Inimigo: Vida: " + strconv.Itoa(enemy.Life) +
 			" | Defesa: " + strconv.Itoa(enemy.Defesa) +
 			" | Ataque: " + strconv.Itoa(enemy.Attack)
 
-		result = damageResult + "\n" + enemyResult
+		result = damageResult + enemyResult
 	} else {
 		// Calcular o dano considerando a defesa
 		damage := player.Attack - enemy.Defesa
@@ -86,14 +97,15 @@ func (bs *BattleService) CreateBattle(playerNickname, enemyNickname string) (*en
 		damageResult := "Jogador atacou. Dano causado: " + strconv.Itoa(damage) +
 			" | Vida do Inimigo: " + strconv.Itoa(enemy.Life) +
 			" | Defesa do Inimigo: " + strconv.Itoa(enemy.Defesa) +
-			" | Ataque do Jogador: " + strconv.Itoa(player.Attack)
+			" | Ataque do Jogador: " + strconv.Itoa(player.Attack) +
+			" ||| "
 
 		// Result para os dados do jogador
 		playerResult := "Dados do Jogador: Vida: " + strconv.Itoa(player.Life) +
 			" | Defesa: " + strconv.Itoa(player.Defesa) +
 			" | Ataque: " + strconv.Itoa(player.Attack)
 
-		result = damageResult + "\n" + playerResult
+		result = damageResult + playerResult
 	}
 
 	if player.Life == 0 {

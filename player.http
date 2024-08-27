@@ -3,9 +3,9 @@ content-type: application/json
 
 {
     "nickname": "pedrohfmg",
-    "life": 26,
-    "attack": 9,
-    "defesa": 9
+    "life": 24,
+    "attack": 8,
+    "defesa": 6
 }
 
 ###
@@ -17,7 +17,7 @@ content-type: application/json
 
 ###
 
-DELETE http://localhost:8080/player/<uuid> HTTP/1.1
+DELETE http://localhost:8080/player/0753ae32-3562-4e59-8cba-5e6c55aaefd2 HTTP/1.1
 content-type: application/json
 
 {

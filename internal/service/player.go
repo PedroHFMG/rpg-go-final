@@ -16,7 +16,7 @@ func NewPlayerService(PlayerRepository repository.PlayerRepository) *PlayerServi
 	return &PlayerService{PlayerRepository: PlayerRepository}
 }
 
-func (ps *PlayerService) AddPlayer(nickname string, life, attack, defesa int) (*entity.Player, error) {
+func (ps *PlayerService) AddPlayer(nickname string, life, attack, defesa int, status string) (*entity.Player, error) {
 	if nickname == "" || life == 0 || attack == 0 || defesa == 0 {
 		return nil, errors.New("player nickname, life and attack is required")
 	}
@@ -37,6 +37,10 @@ func (ps *PlayerService) AddPlayer(nickname string, life, attack, defesa int) (*
 		return nil, errors.New("player life must be between 1 and 100")
 	}
 
+	if status == "" {
+		status = "Normal"
+	}
+
 	player, err := ps.PlayerRepository.LoadPlayerByNickname(nickname)
 	if err != nil {
 		fmt.Println(err)
@@ -46,7 +50,7 @@ func (ps *PlayerService) AddPlayer(nickname string, life, attack, defesa int) (*
 		return nil, errors.New("player nickname already exits")
 	}
 
-	player = entity.NewPlayer(nickname, life, attack, defesa)
+	player = entity.NewPlayer(nickname, life, attack, defesa, status)
 	if _, err := ps.PlayerRepository.AddPlayer(player); err != nil {
 		fmt.Println(err)
 		return nil, errors.New("internal server error")
@@ -96,7 +100,7 @@ func (ps *PlayerService) LoadPlayer(id string) (*entity.Player, error) {
 	return player, nil
 }
 
-func (ps *PlayerService) SavePlayer(id, nickname string, life, attack, defesa int) (*entity.Player, error) {
+func (ps *PlayerService) SavePlayer(id, nickname string, life, attack, defesa int, status string) (*entity.Player, error) {
 	player, err := ps.PlayerRepository.LoadPlayerById(id)
 
 	if err != nil {
