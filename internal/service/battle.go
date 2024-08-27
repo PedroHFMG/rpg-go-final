@@ -40,8 +40,11 @@ func (bs *BattleService) CreateBattle(playerNickname, enemyNickname string) (*en
 	battle := entity.NewBattle(player.ID, enemy.ID, player.Nickname, enemy.Nickname)
 	dice := battle.DiceThrown
 	dice2 := battle.Dice2 //Dado secundário para verificar a chance de dar ataque com Poison
-
 	var result string
+
+	if player.Life == 1 && dice2 >= 1 {
+		player.Attack = player.Attack * 4
+	}
 
 	if dice <= 3 {
 		// Calcular o dano considerando a defesa
@@ -82,6 +85,7 @@ func (bs *BattleService) CreateBattle(playerNickname, enemyNickname string) (*en
 	} else {
 		// Calcular o dano considerando a defesa
 		damage := player.Attack - enemy.Defesa
+
 		if damage < 0 {
 			damage = 0
 		}

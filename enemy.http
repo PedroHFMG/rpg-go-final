@@ -2,8 +2,8 @@ POST http://localhost:8080/enemy HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "cacodemon",
-    "life": 21,
+    "nickname": "revenant",
+    "life": 30,
     "attack": 9,
     "defesa": 5
 }

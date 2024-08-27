@@ -2,8 +2,8 @@ POST http://localhost:8080/player HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "pedrohfmg",
-    "life": 24,
+    "nickname": "pedro",
+    "life": 1,
     "attack": 8,
     "defesa": 6
 }
