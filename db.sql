@@ -1,26 +1,25 @@
--- CREATE DATABASE
-
-CREATE TABLE Player (
-    ID UUID PRIMARY KEY,
-    Nickname VARCHAR(255) NOT NULL,
-    Life INT NOT NULL,
-    Attack INT NOT NULL,
-    Defesa INT NOT NULL
+CREATE TABLE public.battle (
+    id uuid NOT NULL,
+    enemyid uuid NOT NULL,
+    playerid uuid NOT NULL,
+    dicethrown integer NOT NULL,
+    playername character varying(255),
+    enemyname character varying(255),
+    result character varying(255)
 );
 
-CREATE TABLE Enemy (
-    ID UUID PRIMARY KEY,
-    Nickname VARCHAR(255) NOT NULL,
-    Life INT NOT NULL,
-    Attack INT NOT NULL,
-    Defesa INT NOT NULL
+CREATE TABLE public.enemy (
+    id uuid NOT NULL,
+    nickname character varying(255) NOT NULL,
+    life integer NOT NULL,
+    attack integer NOT NULL,
+    defesa integer NOT NULL
 );
 
-CREATE TABLE Battle (
-    ID UUID PRIMARY KEY,
-    EnemyID UUID NOT NULL,
-    PlayerID UUID NOT NULL,
-    DiceThrown INT NOT NULL,
-    FOREIGN KEY (EnemyID) REFERENCES Enemy(ID),
-    FOREIGN KEY (PlayerID) REFERENCES Player(ID)
+CREATE TABLE public.player (
+    id uuid NOT NULL,
+    nickname character varying(255) NOT NULL,
+    life integer NOT NULL,
+    attack integer NOT NULL,
+    defesa integer NOT NULL
 );

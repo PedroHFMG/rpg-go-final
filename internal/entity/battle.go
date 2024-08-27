@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"time"
 
-	 "github.com/google/uuid"
+	"github.com/google/uuid"
 )
 
 type Battle struct {
@@ -28,21 +28,3 @@ func NewBattle(playerID, enemyID, playerName, enemyName string) *Battle {
 		DiceThrown: rand.Intn(6) + 1,
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -2,7 +2,10 @@ POST http://localhost:8080/enemy HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "A"
+    "nickname": "C",
+    "life": 25,
+    "attack": 10,
+    "defesa": 9
 }
 
 ###
@@ -30,9 +33,11 @@ content-type: application/json
 
 ###
 
-PUT http://localhost:8080/enemy/A HTTP/1.1
+PUT http://localhost:8080/enemy/ce2cd039-f7b7-49e4-a876-ad7fffd0a388 HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "B"
+    "defesa": 6,
+    "attack": 7,
+    "life": 20
 }

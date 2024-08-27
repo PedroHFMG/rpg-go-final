@@ -29,7 +29,6 @@ func (ps *PlayerService) AddPlayer(nickname string, life, attack, defesa int) (*
 		return nil, errors.New("player attack must be between 1 and 10")
 	}
 
-	
 	if defesa > 10 || defesa <= 0 {
 		return nil, errors.New("player defesa must be between 1 and 10")
 	}
@@ -47,7 +46,7 @@ func (ps *PlayerService) AddPlayer(nickname string, life, attack, defesa int) (*
 		return nil, errors.New("player nickname already exits")
 	}
 
-	player = entity.NewPlayer(nickname, life, attack, defesa )
+	player = entity.NewPlayer(nickname, life, attack, defesa)
 	if _, err := ps.PlayerRepository.AddPlayer(player); err != nil {
 		fmt.Println(err)
 		return nil, errors.New("internal server error")
@@ -130,7 +129,7 @@ func (ps *PlayerService) SavePlayer(id, nickname string, life, attack, defesa in
 		player.Attack = attack
 	}
 	if defesa != 0 && defesa != player.Defesa {
-		if defesa > 10 || defesa  <= 0 {
+		if defesa > 10 || defesa <= 0 {
 			return nil, errors.New("player attack must be between 1 and 10")
 		}
 		player.Defesa = defesa

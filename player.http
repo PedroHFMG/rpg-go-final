@@ -2,9 +2,10 @@ POST http://localhost:8080/player HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "TheClipBR",
-    "life": 10,
-    "attack": 2
+    "nickname": "pedrohfmg",
+    "life": 26,
+    "attack": 9,
+    "defesa": 9
 }
 
 ###
@@ -24,7 +25,7 @@ content-type: application/json
 
 ###
 
-GET http://localhost:8080/player/b2f73868-899b-440f-9d0c-9b46c3145f90 HTTP/1.1
+GET http://localhost:8080/player/<uuid> HTTP/1.1
 content-type: application/json
 
 {
@@ -32,11 +33,12 @@ content-type: application/json
 
 ###
 
-PUT http://localhost:8080/player/b2f73868-899b-440f-9d0c-9b46c3145f90 HTTP/1.1
+PUT http://localhost:8080/player/e92d929b-eaba-4585-996f-409e8cff0caa HTTP/1.1
 content-type: application/json
 
 {
-    "nickname": "TheClipBR",
-    "attack": 2,
-    "life": 100
+    "nickname": "pedrohfmg",
+    "life": 26,
+    "attack": 9,
+    "defesa": 10
 }

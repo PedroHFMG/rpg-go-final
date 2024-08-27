@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"rpg-go-final/internal/entity"
 	"database/sql"
+	"rpg-go-final/internal/entity"
 )
 
 type BattleRepository struct {

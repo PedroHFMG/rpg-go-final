@@ -1,8 +1,9 @@
 POST http://localhost:8080/battle HTTP/1.1
 content-type: application/json
+
 {
     "Enemy": "A",
-    "Player": "TheClip"
+    "Player": "pedrohfmg"
 }
 
 
@@ -15,7 +16,7 @@ content-type: application/json
 
 ###
 
-GET http://localhost:8080/enemy/A HTTP/1.1
+GET http://localhost:8080/enemy HTTP/1.1
 content-type: application/json
 
 {
@@ -23,7 +24,7 @@ content-type: application/json
 
 ###
 
-GET http://localhost:8080/player/TheClip HTTP/1.1
+GET http://localhost:8080/player/<uuid> HTTP/1.1
 content-type: application/json
 
 {
